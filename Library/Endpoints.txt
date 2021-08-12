@@ -1,0 +1,9 @@
+Endpoint					HTTP Method			Description
+/api/library/book				GET			Read all books from database.
+/api/library/book?isbn=1919		GET			Read book by ISBN
+/api/library/book/:id			GET			Read book by ID
+/api/library/book				POST		Register New Book
+/api/library/book/:id			DELETE		Remove a book
+/api/library/book/lend			POST		Lend a book to a member
+/api/library/member				POST		Register member
+/api/library/member/:id			PATCH		Update a member

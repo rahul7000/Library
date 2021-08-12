@@ -1,0 +1,3 @@
+//One to Many mapping Between Author and Book,
+//One to Many mapping between Book and Lend,
+//One to Many mapping between Member and Lend
