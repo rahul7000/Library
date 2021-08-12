@@ -19,11 +19,10 @@ import javax.mail.internet.MimeMultipart;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.rahul.library.constant.Constants;
+
 @Component
 public class EmailUtil {
-	
-	@Value("email.password")
-	String senderPassword;
 
 	public void sendmail() throws AddressException, MessagingException, IOException {
 		
@@ -37,7 +36,7 @@ public class EmailUtil {
 		   
 		   Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 		      protected PasswordAuthentication getPasswordAuthentication() {
-		         return new PasswordAuthentication("rahrajput29@gmail.com",senderPassword );
+		         return new PasswordAuthentication("rahrajput29@gmail.com",Constants.SENDER_PASSWORD );
 		      }
 		   });
 		   Message msg = new MimeMessage(session);

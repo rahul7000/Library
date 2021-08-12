@@ -12,10 +12,6 @@ spring:
 server:
   port: 9090
       
-      
-gmail:
-  password: password
-      
 # for Psotgresql specific configuration      
 #spring:
 #  datasource:

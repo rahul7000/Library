@@ -30,6 +30,9 @@ public class ThingsRepository extends SimpleJpaRepository<Book, Long> {
 
 	@Transactional
 	public List<Book> save(List<Book> things) {
+		System.out.println("---------------------------------");
+		System.out.println("Uploading start");
+		System.out.println("---------------------------------");
 		things.forEach(thing -> {
 			entityManager.persist(thing);
 			try {
