@@ -1,4 +1,4 @@
-package com.rahul.library;
+package com.rahul.library.config;
 
 import java.util.concurrent.Executor;
 

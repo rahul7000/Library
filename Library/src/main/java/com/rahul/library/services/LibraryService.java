@@ -244,25 +244,32 @@ public class LibraryService {
 		return new PaginatedBookResponse(books.getContent(), books.getTotalElements(), books.getTotalPages());
 	}
 
-	
 	@Async("uploadExecutor")
 	public List<Book> persistBook(List<BookCreationRequest> request) {
-		
+
 		List<Book> bookToCreate = new ArrayList<>();
 		Book tempBook = null;
-		
-		for(BookCreationRequest book : request) {
-			Optional<Author> author = authorRepository.findById(book.getAuthorId());
-			if (!author.isPresent()) {
-				throw new EntityNotFoundException("Author Not Found with id=" + book.getAuthorId().toString(),
-						GlobalErrorCode.ERROR_AUTHOR_ID_NOT_FOUND);
+		int count = 0;
+		Optional<Author> author = null;
+
+		for (BookCreationRequest book : request) {
+
+			if (count == 0) {
+				author = authorRepository.findById(book.getAuthorId());
+				if (!author.isPresent()) {
+					throw new EntityNotFoundException("Author Not Found with id=" + book.getAuthorId().toString(),
+							GlobalErrorCode.ERROR_AUTHOR_ID_NOT_FOUND);
+				}
+				count++;
 			}
 			tempBook = new Book();
 			BeanUtils.copyProperties(book, tempBook);
 			tempBook.setAuthor(author.get());
+			// for (int i = 0; i < 100000; i++) {
 			bookToCreate.add(tempBook);
+			// }
 		}
-		
+
 		return thingsRepository.save(bookToCreate);
 	}
 
